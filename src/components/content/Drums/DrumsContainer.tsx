@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import Side from "./Side";
 import sideA from "../../../presets/EDM/sideA/sideA";
@@ -21,8 +21,8 @@ const DrumsContainer = (props: DrumsContainerProps) => {
     return (
         <div>
             {firstIsActive
-                ? <Side side={sideA}/>
-                : <Side side={sideB}/>}
+                ? <Side side='A' isSmall={false}/>
+                : <Side side='B' isSmall={false}/>}
         </div>
     );
 };

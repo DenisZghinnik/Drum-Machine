@@ -13,8 +13,7 @@ const animationRules = css`
 export const Button = styled.button<{colorType:string, animate: boolean}>`
   width: 150px;
   height: 150px;
-  font-size: 25px;
-  color: #334;
+  margin-bottom: 8px;
   background: ${props=> {
     if(props.colorType==='blue')return 'radial-gradient(#44C3FF, #116BFF)';
     if(props.colorType==='red')return 'radial-gradient(#F37087, #E52962)';
@@ -34,4 +33,13 @@ export const Button = styled.button<{colorType:string, animate: boolean}>`
     animation: ${props=>props.animate ? animationRules : ''};
   };
   ${DefaultButtonStyle}
+`;
+export const LoopButton = styled(Button)<{isActive: boolean}>`
+  color: #334;
+  font-size: 25px;
+  width: 73px;
+  height: 73px;
+  border: ${props=> {
+    return props.isActive ? '2px solid #fff'  : 'none'
+  }};
 `;

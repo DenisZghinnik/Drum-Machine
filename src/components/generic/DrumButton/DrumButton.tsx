@@ -1,5 +1,5 @@
-import React, {useRef, useState} from 'react';
-import { Button } from './DrumButton.style';
+import React, {useState} from 'react';
+import {Button} from './DrumButton.style';
 
 type DrumButtonProps = {
     colorType: string,
@@ -8,17 +8,19 @@ type DrumButtonProps = {
 };
 
 const DrumButton = (props: DrumButtonProps) => {
+    const {id, sound, colorType} = props;
     const [animate, setAnimate] = useState(false);
-    const clickHandler=()=>{
-        setAnimate(true);
-        props.sound.currentTime=0;
-        props.sound.play();
-    };
     const animationEnd =()=>{setAnimate(false)};
-    return (
-        <Button  id={props.id} colorType={props.colorType} animate={animate} onClick={clickHandler} onAnimationEnd={animationEnd}>
-        </Button>
-    );
+    const play=()=>{
+        setAnimate(true);
+        sound.currentTime=0;
+        sound.play();
+    };
+    return <Button id={id}
+                   colorType={colorType}
+                   animate={animate}
+                   onClick={play}
+                   onAnimationEnd={animationEnd}/>
 };
 export default DrumButton;
 

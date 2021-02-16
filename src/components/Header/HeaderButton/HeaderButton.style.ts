@@ -17,7 +17,6 @@ export const DefaultButtonStyle = css`
   position: relative;
   background-color: rgba(255,255,255,0);
   &:focus{
-    border: none;
     outline: none;
   }
 `;
