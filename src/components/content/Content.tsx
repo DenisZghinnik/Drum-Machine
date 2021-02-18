@@ -1,23 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import DrumsContainer from "./Drums/DrumsContainer";
-import LoopContainer from "./Loop/LoopContainer";
+import Loop from "./Loop/Loop";
 import {useSelector} from "react-redux";
 import {getLoopModeIsActive} from "../../selectors/selectors";
 
-type ContentContainerProps = {};
+type Props = {};
 
-const ContentContainer = (props: ContentContainerProps) => {
+const Content = (props: Props) => {
     const loopModeIsActive = useSelector(getLoopModeIsActive)
     return (
         <Container>
             {loopModeIsActive
-                ? <LoopContainer/>
+                ? <Loop/>
                 : <DrumsContainer/>}
+
         </Container>
     );
 };
-export default ContentContainer;
+export default React.memo(Content);
 
 const Container = styled.div`
   background-color: #2F2F40;

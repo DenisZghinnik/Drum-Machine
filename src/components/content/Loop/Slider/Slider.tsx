@@ -11,8 +11,8 @@ type SliderProps = {};
 
 const Slider = (props: SliderProps) => {
     const dispatch = useDispatch();
-    const bpmPoints:number[] = useSelector(getBpmPoints);
-    const choosenBpm:number = useSelector(getBpm);
+    const bpmPoints = useSelector(getBpmPoints);
+    const choosenBpm = useSelector(getBpm);
     const settings = {
         focusOnSelect: true,
         className: "center",
@@ -28,6 +28,7 @@ const Slider = (props: SliderProps) => {
             dispatch(loopActions.setBPM(bpmPoints[index]))
         },
     };
+
     return (
         <Container>
             <Selected></Selected>
@@ -37,7 +38,7 @@ const Slider = (props: SliderProps) => {
       </Container>
     );
 };
-export default Slider;
+export default React.memo(Slider);
 
 const BpmPoint = styled.div`
   text-align: center;
@@ -61,7 +62,7 @@ const Container = styled.div`
 	background: linear-gradient(to left, #334, transparent, #334);
 	z-index: 10;
 	cursor: pointer;
-    pointer-events: none
+    pointer-events: none;
   };
 
 `

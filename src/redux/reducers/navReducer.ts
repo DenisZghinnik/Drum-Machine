@@ -3,12 +3,10 @@ import {buildAction, InferActionTypes} from "../../types/types";
 export const TOGGLE_RECORD='app/nav/TOGGLE_RECORD';
 
 export type navState = {
-    firstSideIsActive: boolean,
     recordIsActive: boolean
 }
 
 const initialState = {
-    firstSideIsActive: true,
     recordIsActive: false
 };
 

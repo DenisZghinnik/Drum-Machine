@@ -21,8 +21,8 @@ const DrumsContainer = (props: DrumsContainerProps) => {
     return (
         <div>
             {firstIsActive
-                ? <Side side='A' isSmall={false}/>
-                : <Side side='B' isSmall={false}/>}
+                ? <Side side='A'/>
+                : <Side side='B'/>}
         </div>
     );
 };

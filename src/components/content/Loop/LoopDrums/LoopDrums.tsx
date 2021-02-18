@@ -6,15 +6,15 @@ import {loopActions} from "../../../../redux/reducers/loopReducer";
 
 type LoopDrumsProps = {};
 const LoopDrums = (props: LoopDrumsProps) => {
-    const dispatch = useDispatch();
+
     return (
         <Container>
-            <Side side='A' isSmall={true} />
-            <Side side='B' isSmall={true} />
+            <Side side='A'/>
+            <Side side='B'/>
         </Container>
     );
 };
-export default LoopDrums;
+export default React.memo(LoopDrums);
 
 const Container = styled.div`
   margin-top: 15px;

@@ -2,7 +2,12 @@ import { buildAction, InferActionTypes } from "../../types/types";
 import sideA from "../../presets/EDM/sideA/sideA";
 import sideB from "../../presets/EDM/sideB/sideB";
 
-export const initialActiveButton = {id: sideA[0].id, sound: sideA[0].sound, color: sideA[0].color, isPaused: false};
+export const initialLoopButton = {
+    id: sideA[0].id,
+    sound: sideA[0].sound,
+    color: sideA[0].color,
+    isPaused: false
+};
 
 export const TOGGLE_SIDE='app/nav/TOGGLE_SIDE';
 

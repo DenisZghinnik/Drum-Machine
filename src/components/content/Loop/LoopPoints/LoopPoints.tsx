@@ -1,30 +1,46 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
-import {useSelector} from "react-redux";
-import {getCurrentActiveButton, getLoopPoints} from "../../../../selectors/selectors";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    getCurrentPoint,
+    getIntervalTime,
+    getLoopPoints,
+    getPlay
+} from "../../../../selectors/selectors";
 import LoopPoint from "./LoopPoint/LoopPoint";
+import {loopActions} from "../../../../redux/reducers/loopReducer";
 
-type LoopBodyProps = {};
-const LoopPoints = (props: LoopBodyProps) => {
-
+type Props = {};
+const LoopPoints = (props: Props) => {
+    const dispatch = useDispatch();
+    const play = useSelector(getPlay);
     const loopPoints = useSelector(getLoopPoints);
-    const activeColorType = useSelector(getCurrentActiveButton).color;
-    const activeButtonId = useSelector(getCurrentActiveButton).id;
+    const intervalTime = useSelector(getIntervalTime);
+    const currentPointIndex = useSelector(getCurrentPoint);
 
+    const player = () => {
+        if(play&&currentPointIndex!==null) {
+            loopPoints[currentPointIndex][currentPointIndex].forEach(a => {
+                if (!a.isPaused) {
+                    a.sound.currentTime = 0;
+                    a.sound.play()
+                };
+            });
+            setTimeout(()=>{dispatch(loopActions.setCurrentPoint())}, intervalTime);
+       };
+    };
+
+    useEffect(player,[play, currentPointIndex])
     return (
         <Container>
             {loopPoints.map((a,i)=><LoopPoint pointSounds={loopPoints[i][i]}
-                                              activeButtonId={activeButtonId}
                                               id={i}
                                               key={i*23}
-                                              activeColorType={activeColorType}
             />)}
         </Container>
     );
 };
-export default LoopPoints;
-
-
+export default React.memo(LoopPoints);
 
 const Container = styled.div`
   width: 100%;

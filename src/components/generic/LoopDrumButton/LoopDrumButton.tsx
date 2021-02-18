@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getButtonsOnPause, getCurrentActiveButton, getLoopPoints} from '../../../selectors/selectors';
+import {getButtonsOnPause, getCurrentButton, getLoopPoints} from '../../../selectors/selectors';
 import { loopActions } from '../../../redux/reducers/loopReducer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faRedoAlt, faPause} from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +23,7 @@ const LoopDrumButton = (props: DrumButtonProps) => {
     };
 
     const dispatch = useDispatch();
-    const isActive = id === useSelector(getCurrentActiveButton).id;
+    const isActive = id === useSelector(getCurrentButton).id;
     const hasSoundInLoop = useSelector(getLoopPoints).some((a,i)=>a[i].some(a=>a.id===id));
     const isPaused = useSelector(getButtonsOnPause).some(a=>a===id);
 

@@ -1,15 +1,15 @@
 import React from 'react';
-import HeaderContainer from "./components/Header/HeaderContainer";
+import Header from "./components/Header/Header";
 import styled from "styled-components";
-import ContentContainer from "./components/content/ContentContainer";
+import Content from "./components/content/Content";
 
 function App() {
 
   return (
       <AppWrapper>
           <AppContainer>
-              <HeaderContainer/>
-              <ContentContainer/>
+              <Header/>
+              <Content/>
           </AppContainer>
       </AppWrapper>
   );
@@ -17,8 +17,9 @@ function App() {
 
 const AppWrapper = styled.div`
   display: flex;
+  height: 95vh;
   justify-content: center;
-  //align-items: center;
+  align-items: center;
 `
 
 const AppContainer = styled.div`

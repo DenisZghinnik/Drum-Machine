@@ -6,9 +6,9 @@ import SideToggleIcons from "./HeaderButton/SideToggleIcons";
 import {useSelector} from "react-redux";
 import {getBpm, getLoopModeIsActive, getNav} from "../../selectors/selectors";
 
-type HeaderContainerProps = {};
+type Props = {};
 
-const HeaderContainer = (props: HeaderContainerProps) => {
+const Header = (props: Props) => {
     const loopModeIsActive = useSelector(getLoopModeIsActive);
     const nav = useSelector(getNav);
     const bpm = useSelector(getBpm);
@@ -20,7 +20,7 @@ const HeaderContainer = (props: HeaderContainerProps) => {
         </Container>
     );
 };
-export default HeaderContainer;
+export default React.memo(Header);
 
 
 

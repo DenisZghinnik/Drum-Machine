@@ -43,11 +43,11 @@ const HeaderButton = (props: Props) => {
                     ? <SideToggleIcons isActive={firstIsActive} icon1={faFont} icon2={faBold}/>
                     : <SideToggleIcons isActive={play} icon1={faPlay} icon2={faPause}/> }
 
-            <span>{loopModeIsActive&&!props.icon ? 'Play/Pause' : props.subTitle  }</span>
+            <span>{loopModeIsActive ? 'Play/Pause' : props.subTitle  }</span>
         </Container>
     );
 };
-export default HeaderButton;
+export default React.memo(HeaderButton);
 
 
 

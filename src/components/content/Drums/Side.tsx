@@ -1,19 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
-import DrumButton from '../../generic/DrumButton/DrumButton';
-import {presetItem} from "../../../redux/reducers/drumsReducer";
 import {useSelector} from "react-redux";
-import {getPresetA, getPresetB} from "../../../selectors/selectors";
+import styled from 'styled-components';
+import {presetItem} from "../../../redux/reducers/drumsReducer";
+import DrumButton from '../../generic/DrumButton/DrumButton';
 import LoopDrumButton from '../../generic/LoopDrumButton/LoopDrumButton';
+import {getLoopModeIsActive, getPresetA, getPresetB} from "../../../selectors/selectors";
 
-type SideProps = {
-    side: string,
-    isSmall: boolean
+type Props = {
+    side: string
 };
 
-const Side = (props: SideProps) => {
+const Side = (props: Props) => {
     const presetA = useSelector(getPresetA);
     const presetB = useSelector(getPresetB);
+    const loopModeIsActive = useSelector(getLoopModeIsActive)
 
     const preset = props.side==='A'
         ? presetA
@@ -21,7 +21,7 @@ const Side = (props: SideProps) => {
 
     return (
         <Container>
-            {props.isSmall
+            {loopModeIsActive
                 ? preset.map((a:presetItem,i:number)=> {
                     return <LoopDrumButton key={`side${i}`}
                                            id={a.id}
@@ -36,7 +36,7 @@ const Side = (props: SideProps) => {
         </Container>
     );
 };
-export default Side;
+export default React.memo(Side) ;
 
 
 const Container = styled.div`
