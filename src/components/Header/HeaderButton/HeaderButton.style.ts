@@ -1,6 +1,5 @@
 import styled, {css, keyframes} from 'styled-components';
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {IconLookup, IconProp} from "@fortawesome/fontawesome-svg-core";
 
 const animation = keyframes`
   0% {background-color: rgba(255,255,255,0.5)}
@@ -42,6 +41,12 @@ export const HeaderButtonIcon = styled(FontAwesomeIcon)<{$isActive:boolean|undef
   ${StyledIcon}
   color:${props=> props.$isActive ? '#EDBF06FF' : 'grey'};
 `;
+export const PresetButtonIcon = styled(FontAwesomeIcon)`
+  ${StyledIcon};
+  color:#e5e5e5;
+  font-size: 22px;
+`;
+
 export const SideIcon = styled(FontAwesomeIcon)<{$isActive:boolean}>`
   ${StyledIcon}
   color:${props=>props.$isActive? '#e5e5e5' : 'grey'};

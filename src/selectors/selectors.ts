@@ -1,13 +1,15 @@
 import {RootState} from "../redux/reducers/rootReducer";
 
 
-export const getNav = (state:RootState)=>state.nav;
 export const getFirstIsActive = (state:RootState)=>state.drums.firstSideIsActive;
 export const getLoopModeIsActive = (state:RootState)=>state.loop.loopModeIsActive;
 
 
 export const getPresetA = (state:RootState)=>state.drums.sideA;
 export const getPresetB = (state:RootState)=>state.drums.sideB;
+export const getPresetIcon = (state:RootState)=>state.drums.icon;
+export const getIsFetching = (state:RootState)=>state.drums.isFetching;
+export const getShowSelect = (state:RootState)=>state.drums.showSelect;
 
 
 

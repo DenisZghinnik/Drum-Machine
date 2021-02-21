@@ -1,11 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Side from "../../Drums/Side";
-import {useDispatch} from "react-redux";
-import {loopActions} from "../../../../redux/reducers/loopReducer";
 
-type LoopDrumsProps = {};
-const LoopDrums = (props: LoopDrumsProps) => {
+type Props = {};
+const LoopDrums = (props: Props) => {
 
     return (
         <Container>

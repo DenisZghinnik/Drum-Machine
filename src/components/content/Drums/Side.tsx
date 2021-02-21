@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import styled from 'styled-components';
-import {presetItem} from "../../../redux/reducers/drumsReducer";
+import {presetItem} from "../../../redux/reducers/presetReducer";
 import DrumButton from '../../generic/DrumButton/DrumButton';
 import LoopDrumButton from '../../generic/LoopDrumButton/LoopDrumButton';
 import {getLoopModeIsActive, getPresetA, getPresetB} from "../../../selectors/selectors";

@@ -1,22 +1,23 @@
 import React from 'react';
 import styled from "styled-components";
 import HeaderButton from "./HeaderButton/HeaderButton";
-import {faRedoAlt, faRecordVinyl} from '@fortawesome/free-solid-svg-icons';
 import SideToggleIcons from "./HeaderButton/SideToggleIcons";
 import {useSelector} from "react-redux";
-import {getBpm, getLoopModeIsActive, getNav} from "../../selectors/selectors";
+import {getBpm, getLoopModeIsActive, getShowSelect} from "../../selectors/selectors";
+import PresetNav from "./PresetNav";
 
 type Props = {};
 
 const Header = (props: Props) => {
     const loopModeIsActive = useSelector(getLoopModeIsActive);
-    const nav = useSelector(getNav);
+    const showSelect = useSelector(getShowSelect);
     const bpm = useSelector(getBpm);
     return (
         <Container>
-            <HeaderButton isActive={loopModeIsActive} icon={faRedoAlt} subTitle={`${bpm} BPM`} type='loop'/>
-            <HeaderButton isActive={nav.recordIsActive} icon={faRecordVinyl} subTitle={'Record'}/>
-            <HeaderButton subTitle={'Side'} type='toggle'/>
+            <HeaderButton subTitle={`${bpm} BPM`} type='loop'/>
+            <HeaderButton subTitle={'Preset'} type='preset'/>
+            <HeaderButton subTitle={loopModeIsActive?'Play/Pause':'Side'} type='toggle'/>
+            {showSelect&&<PresetNav/>}
         </Container>
     );
 };

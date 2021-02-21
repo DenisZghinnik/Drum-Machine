@@ -10,16 +10,20 @@ const animationRules = css`
     ${buttonAnimation} 0.2s 1 ease forwards;
 `;
 
+export const getGradient = (colorType:string) => {
+    if(colorType==='blue')return 'radial-gradient(#44C3FF, #116BFF)';
+    if(colorType==='red')return 'radial-gradient(#F37087, #E52962)';
+    if(colorType==='purple')return 'radial-gradient(#E63EAD, #A81DA3)';
+    if(colorType==='yellow')return 'radial-gradient(#FBEF53, #E3A31D)';
+    if(colorType==='green')return 'radial-gradient(#A3DE31, #3CB216)';
+};
+
 export const Button = styled.button<{colorType:string, animate: boolean}>`
   width: 150px;
   height: 150px;
   margin-bottom: 8px;
   background: ${props=> {
-    if(props.colorType==='blue')return 'radial-gradient(#44C3FF, #116BFF)';
-    if(props.colorType==='red')return 'radial-gradient(#F37087, #E52962)';
-    if(props.colorType==='purple')return 'radial-gradient(#E63EAD, #A81DA3)';
-    if(props.colorType==='yellow')return 'radial-gradient(#FBEF53, #E3A31D)';
-    if(props.colorType==='green')return 'radial-gradient(#A3DE31, #3CB216)';
+    return getGradient(props.colorType);
   }};
   &:before {
     content: '';

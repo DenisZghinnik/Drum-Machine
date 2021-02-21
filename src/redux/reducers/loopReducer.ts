@@ -1,5 +1,5 @@
 import {buildAction, InferActionTypes} from "../../types/types";
-import {initialLoopButton} from "./drumsReducer";
+import {store} from "../store/store";
 
 export const SET_BPM = 'app/loop/SET_BPM';
 export const TOGGLE_LOOP='app/nav/TOGGLE_LOOP';
@@ -9,7 +9,7 @@ export const SET_CURRENT_POINT = 'app/loop/SET_CURRENT_POINT';
 export const TOGGLE_CURRENT_SOUND = 'app/loop/TOGGLE_CURRENT_SOUND';
 export const TOGGLE_BUTTON_ON_PAUSE = 'app/loop/TOGGLE_BUTTON_ON_PAUSE';
 
-export type ActiveButton = {id:string, sound:HTMLAudioElement, color:string, isPaused :boolean};
+export type ActiveButton = {id:string, sound:HTMLAudioElement|null, color:string, isPaused :boolean};
 export type loopState = {
     loopModeIsActive: boolean,
     bpm: number,
@@ -21,7 +21,6 @@ export type loopState = {
     currentPointIndex: number|null,
     buttonsOnPause: string[]
 };
-
 const initialState: loopState = {
     loopModeIsActive: false,
     bpm: 125,
@@ -29,7 +28,12 @@ const initialState: loopState = {
     play: false,
     bpmPoints: [...new Array(46)].map((_,i)=>i*5).slice(2),
     loopPoints: [...new Array(32)].map((_,i)=>({[i]:[]})),
-    currentButton: initialLoopButton,
+    currentButton: {
+        id: '0',
+        sound: null,
+        color: '',
+        isPaused: false
+    },
     currentPointIndex: null,
     buttonsOnPause: []
 };
@@ -51,7 +55,7 @@ const toggleCurrentSound = (state: loopState, id: string):loopState => {
 const toggleButtonOnPause = (state: loopState): loopState => {
     const currentId = state.currentButton.id;
     const setPause = (bool:boolean)=>{
-        state.loopPoints.map((a, i) => {                                            //every selected sounds in loopPoints set pause to false
+        state.loopPoints.map((a, i) => {
             a[i].map(b => b.id === currentId ? b.isPaused = bool : b)
             return a
         });
@@ -103,7 +107,7 @@ export const loopActions = {
     setBPM: (bpm:number)=>buildAction(SET_BPM, bpm),
     toggleLoopMode: ()=>buildAction(TOGGLE_LOOP),
     togglePlay: ()=>buildAction(TOGGLE_PLAY),
-    setCurrentButton: (id:string,sound:string,color:string, isPaused: boolean)=>
+    setCurrentButton: (id:string,sound:HTMLAudioElement,color:string, isPaused: boolean)=>
         buildAction(SET_CURRENT_BUTTON, {id, sound,color,isPaused}),
     toggleCurrentSoundInPoint: (id:number)=>buildAction(TOGGLE_CURRENT_SOUND, `${id}`),
     toggleButtonOnPause: ()=>buildAction(TOGGLE_BUTTON_ON_PAUSE),

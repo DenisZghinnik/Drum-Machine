@@ -21,7 +21,7 @@ const LoopPoints = (props: Props) => {
     const player = () => {
         if(play&&currentPointIndex!==null) {
             loopPoints[currentPointIndex][currentPointIndex].forEach(a => {
-                if (!a.isPaused) {
+                if (!a.isPaused&&a.sound) {
                     a.sound.currentTime = 0;
                     a.sound.play()
                 };

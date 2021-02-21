@@ -1,12 +1,10 @@
 import React from "react";
 import {combineReducers} from "redux";
-import {navReducer} from "./navReducer";
 import {loopReducer} from "./loopReducer";
-import {drumsReducer} from "./drumsReducer";
+import {presetReducer} from "./presetReducer";
 
 export const rootReducer = combineReducers({
-    nav: navReducer,
-    drums: drumsReducer,
+    drums: presetReducer,
     loop: loopReducer
 });
 
