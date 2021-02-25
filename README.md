@@ -8,5 +8,5 @@ music and programming. I tried to use the KISS and DRY principles, I learned mor
 about the structure of the application, unit testing, optimization, refactoring, working
 with media data, etc.
 
-You can check it here: https://deniszghinnik.github.io/drum-machine
+You can check it here: https://deniszghinnik.github.io/DrumMachine/
 
