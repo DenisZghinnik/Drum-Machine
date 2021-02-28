@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import HeaderButton from "./HeaderButton/HeaderButton";
-import SideToggleIcons from "./HeaderButton/SideToggleIcons";
 import {useSelector} from "react-redux";
 import {getBpm, getLoopModeIsActive, getShowSelect} from "../../selectors/selectors";
 import PresetNav from "./PresetNav";
