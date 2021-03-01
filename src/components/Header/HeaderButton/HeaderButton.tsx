@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {faPlay, faPause, faBold, faFont, faRedoAlt} from "@fortawesome/free-solid-svg-icons";
-import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
-import {Container, HeaderButtonIcon, PresetButtonIcon} from './HeaderButton.style';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { faPlay, faPause, faBold, faFont, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
+import { Container, HeaderButtonIcon, PresetButtonIcon } from './HeaderButton.style';
 import SideToggleIcons from "./SideToggleIcons";
-import {loopActions} from '../../../redux/reducers/loopReducer';
-import {presetActions} from "../../../redux/reducers/presetReducer";
-import {getFirstIsActive, getLoopModeIsActive, getPlay, getPresetIcon} from '../../../selectors/selectors';
+import { loopActions } from '../../../redux/reducers/loopReducer';
+import { presetActions } from "../../../redux/reducers/presetReducer";
+import { getFirstIsActive, getLoopModeIsActive, getPlay, getPresetIcon } from '../../../selectors/selectors';
 
 
 type Props = {
@@ -30,15 +29,15 @@ const HeaderButton = (props: Props) => {
             ? dispatch(loopActions.togglePlay())
             : dispatch(presetActions.toggleSide());
     };
-    const animationEnd = () =>{setAnimate(false)};
+    const animationEnd = () => { setAnimate(false) };
 
     return (
         <Container animate={animate} onClick={clickHandler} onAnimationEnd={animationEnd}>
-            {props.type === 'loop'&&<HeaderButtonIcon $isActive={loopModeIsActive} icon={faRedoAlt}/>}
-            {props.type === 'preset'&&<PresetButtonIcon icon={presetIcon}/>}
-            {props.type === 'toggle'&& (!loopModeIsActive
-                ? <SideToggleIcons isActive={firstIsActive} icon1={faFont} icon2={faBold}/>
-                : <SideToggleIcons isActive={play} icon1={faPlay} icon2={faPause}/>)}
+            {props.type === 'loop' && <HeaderButtonIcon $isActive={loopModeIsActive} icon={faRedoAlt} />}
+            {props.type === 'preset' && <PresetButtonIcon icon={presetIcon} />}
+            {props.type === 'toggle' && (!loopModeIsActive
+                ? <SideToggleIcons isActive={firstIsActive} icon1={faFont} icon2={faBold} />
+                : <SideToggleIcons isActive={play} icon1={faPlay} icon2={faPause} />)}
             <span>{props.subTitle}</span>
         </Container>
     );

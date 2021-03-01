@@ -1,28 +1,28 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Header from "./components/Header/Header";
 import styled from "styled-components";
 import Content from "./components/content/Content";
-import {useDispatch, useSelector} from "react-redux";
-import {getPreset} from "./redux/reducers/presetReducer";
-import {getIsFetching} from "./selectors/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { getPreset } from "./redux/reducers/presetReducer";
+import { getIsFetching } from "./selectors/selectors";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
 function App() {
-    const dispatch = useDispatch();
-    const isFetching = useSelector(getIsFetching)
-    useEffect(()=>{
-        dispatch(getPreset());
-    },[])
+  const dispatch = useDispatch();
+  const isFetching = useSelector(getIsFetching)
+  useEffect(() => {
+    dispatch(getPreset());
+  }, [])
 
   return (
-      <AppWrapper>
-          <AppContainer>
-              {isFetching&&<Preloader type="Oval" color='grey'/>}
-              <Header/>
-              <Content/>
-          </AppContainer>
-      </AppWrapper>
+    <AppWrapper>
+      <AppContainer>
+        {isFetching && <Preloader type="Oval" color='grey' />}
+        <Header />
+        <Content />
+      </AppContainer>
+    </AppWrapper>
   );
 }
 
@@ -35,12 +35,12 @@ const AppWrapper = styled.div`
 
 const AppContainer = styled.div`
   width: 500px;
-  overflow: hidden;
-  border-radius: 10px;
   color: #e5e5e5;
   font-size: 12px;
   font-family: sans-serif;
   position: relative;
+  display: block;
+  border-radius: 10px;
 `;
 
 const Preloader = styled(Loader)`
