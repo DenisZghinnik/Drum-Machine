@@ -1,22 +1,26 @@
 import {faBolt, faDiceD20} from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useDispatch} from "react-redux";
 import {getPreset, presetActions} from "../../redux/reducers/presetReducer";
-type Props = {};
-const PresetNav = (props: Props) => {
+import {loopActions} from "../../redux/reducers/loopReducer";
+
+
+const PresetNav = () => {
     const dispatch = useDispatch();
     const presetClick=(e:any)=> {
         const presetId = e.target.dataset.presetid
         dispatch(getPreset(+presetId));
+        dispatch(loopActions.reset());
+
     };
-    const closeNav = () => {
-        dispatch(presetActions.togglePresetSelect());
+    const closeNav = (e: any) => {
+        if(e.target.id !== 'navBlock') dispatch(presetActions.togglePresetSelect());
     }
     return (
         <Container onClick={closeNav}>
-            <NavBlock>
+            <NavBlock id='navBlock'>
                 <h2>Presets</h2>
                 <div data-presetid={1} onClick={presetClick}><FontAwesomeIcon icon={faDiceD20}/><span>EDM</span></div>
                 <div data-presetid={2} onClick={presetClick}><FontAwesomeIcon icon={faBolt}/><span>Electro</span></div>
@@ -56,5 +60,5 @@ const NavBlock = styled.div`
         pointer-events: none;
       }
     }
-  }
+  
 `;

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import SliderBPM from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -74,4 +74,7 @@ const Selected = styled.div`
   top: -2px;
   border: 1px solid #fff;
   border-radius: 3px;
+  @media only screen and (max-width: 768px) {
+    width: 9.2vw;
+  };
 `

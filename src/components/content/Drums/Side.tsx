@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import {presetItem} from "../../../redux/reducers/presetReducer";
 import DrumButton from '../../generic/DrumButton/DrumButton';
 import LoopDrumButton from '../../generic/LoopDrumButton/LoopDrumButton';

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Side from "./Side";
 import sideA from "../../../presets/EDM/sideA/sideA";
 import sideB from '../../../presets/EDM/sideB/sideB';

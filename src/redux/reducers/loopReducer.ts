@@ -1,5 +1,4 @@
 import {buildAction, InferActionTypes} from "../../types/types";
-import {store} from "../store/store";
 
 export const SET_BPM = 'app/loop/SET_BPM';
 export const TOGGLE_LOOP='app/nav/TOGGLE_LOOP';
@@ -8,6 +7,10 @@ export const SET_CURRENT_BUTTON = 'app/loop/SET_CURRENT_BUTTON';
 export const SET_CURRENT_POINT = 'app/loop/SET_CURRENT_POINT';
 export const TOGGLE_CURRENT_SOUND = 'app/loop/TOGGLE_CURRENT_SOUND';
 export const TOGGLE_BUTTON_ON_PAUSE = 'app/loop/TOGGLE_BUTTON_ON_PAUSE';
+export const RESET = 'app/loop/RESET';
+
+const bpmPoints = [...new Array(46)].map((_,i)=>i*5).slice(2);
+const loopPoints = [...new Array(32)].map((_,i)=>({[i]:[]}));
 
 export type ActiveButton = {id:string, sound:HTMLAudioElement|null, color:string, isPaused :boolean};
 export type loopState = {
@@ -26,8 +29,8 @@ const initialState: loopState = {
     bpm: 125,
     intervalTime: 120,
     play: false,
-    bpmPoints: [...new Array(46)].map((_,i)=>i*5).slice(2),
-    loopPoints: [...new Array(32)].map((_,i)=>({[i]:[]})),
+    bpmPoints: bpmPoints,
+    loopPoints: loopPoints,
     currentButton: {
         id: '0',
         sound: null,
@@ -98,6 +101,8 @@ export const loopReducer = (state = initialState, action:LoopActions):loopState 
             return toggleButtonOnPause(deepCopyOfState(state));
         case SET_CURRENT_POINT:
             return setCurrentPoint(state);
+        case RESET:
+            return {...state, bpmPoints: bpmPoints, loopPoints: loopPoints, buttonsOnPause: []}
         default:
             return state;
     };
@@ -112,6 +117,7 @@ export const loopActions = {
     toggleCurrentSoundInPoint: (id:number)=>buildAction(TOGGLE_CURRENT_SOUND, `${id}`),
     toggleButtonOnPause: ()=>buildAction(TOGGLE_BUTTON_ON_PAUSE),
     setCurrentPoint: ()=>buildAction(SET_CURRENT_POINT),
+    reset: ()=>buildAction(RESET)
 };
 
 export type LoopActions = ReturnType<InferActionTypes<typeof loopActions>>

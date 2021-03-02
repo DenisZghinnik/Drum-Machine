@@ -44,4 +44,8 @@ export const Point = styled.div<{currentColor:string, isActive:boolean, isUsed: 
       if (currentColor === 'green') {shadowColor = '4EBF1DFF'; bgColor='374D3BFF'}
       return `box-shadow: 0 0 0 2px #${shadowColor}; background-color: #${bgColor}`
     }}};
+  @media only screen and (max-width: 768px) {
+    width: 7.5vw;
+    height: 7.5vw;
+  };
 `

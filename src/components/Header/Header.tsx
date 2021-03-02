@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import HeaderButton from "./HeaderButton/HeaderButton";
 import { useSelector } from "react-redux";
 import { getBpm, getLoopModeIsActive, getShowSelect } from "../../selectors/selectors";
@@ -30,4 +30,6 @@ const Container = styled.header`
     padding: 20px 10px;
 	justify-content: space-between;
     background-color: #2F2F40;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 `;

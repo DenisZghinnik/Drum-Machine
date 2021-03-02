@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Slider from "./Slider/Slider";
 import LoopPoints from "./LoopPoints/LoopPoints";
 import LoopDrums from './LoopDrums/LoopDrums';
@@ -23,6 +23,6 @@ export default React.memo(Loop);
 
 const Container = styled.div`
   border-radius: 5px;
-  padding: 10px 0;
+  padding-top: 12px;
   background-color: #334;
 `

@@ -20,8 +20,8 @@ export const getGradient = (colorType: string) => {
 };
 
 export const Button = styled.button<{ colorType: string, animate: boolean }>`
-  width: 27vw;
-  height: 27vw;
+  width: 150px;
+  height: 150px;
   margin-bottom: 8px;
   background: ${props => {
     return getGradient(props.colorType);
@@ -39,9 +39,9 @@ export const Button = styled.button<{ colorType: string, animate: boolean }>`
   };
   ${DefaultButtonStyle};
   
-  @media only screen and (min-width: 520px) {
-    width: 150px;
-    height: 150px;
+  @media only screen and (max-width: 768px) {
+    width: 27vw;
+    height: 27vw;
   }; 
   
 `;
@@ -53,4 +53,8 @@ export const LoopButton = styled(Button) <{ isActive: boolean }>`
   border: ${props => {
     return props.isActive ? '2px solid #fff' : 'none'
   }};
+  @media only screen and (max-width: 768px) {
+    width: 13vw;
+    height: 13vw;
+  };
 `;

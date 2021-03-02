@@ -1,37 +1,40 @@
 import React, { useEffect } from 'react';
 import Header from "./components/Header/Header";
-import styled from "styled-components";
+import styled, {createGlobalStyle} from "styled-components";
 import Content from "./components/content/Content";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { getPreset } from "./redux/reducers/presetReducer";
-import { getIsFetching } from "./selectors/selectors";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
 function App() {
   const dispatch = useDispatch();
-  const isFetching = useSelector(getIsFetching)
   useEffect(() => {
     dispatch(getPreset());
   }, [])
 
   return (
-    <AppWrapper>
+
       <AppContainer>
-        {isFetching && <Preloader type="Oval" color='grey' />}
-        <Header />
-        <Content />
+        <GlobalStyle/>
+        <Header/>
+        <Content/>
       </AppContainer>
-    </AppWrapper>
+
   );
 }
 
-const AppWrapper = styled.div`
-  display: flex;
-  height: 95vh;
-  justify-content: center;
-  align-items: center;
-`
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+`;
 
 const AppContainer = styled.div`
   width: 500px;
@@ -40,19 +43,9 @@ const AppContainer = styled.div`
   font-family: sans-serif;
   position: relative;
   display: block;
-  border-radius: 10px;
+  @media (max-width: 768px){
+    width: 100vw;
+  }
 `;
-
-const Preloader = styled(Loader)`
-  position: absolute;
-  z-index: 10;
-  display: flex;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color:rgba(0,0,0,0.14);
-`
 
 export default App;
